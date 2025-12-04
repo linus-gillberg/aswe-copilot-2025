@@ -1,0 +1,82 @@
+{
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Python settings
+  // ═══════════════════════════════════════════════════════════════════════════
+  "python.defaultInterpreterPath": "/usr/local/bin/python",
+  "[python]": {
+    "editor.formatOnSave": false
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Editor settings
+  // ═══════════════════════════════════════════════════════════════════════════
+  "editor.formatOnSave": false,
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Terminal settings
+  // ═══════════════════════════════════════════════════════════════════════════
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh"
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Copilot Chat settings
+  // ═══════════════════════════════════════════════════════════════════════════
+  "chat.promptFilesLocations": {
+    ".github/prompts": true
+  },  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Copilot terminal auto-approval settings
+  // Philosophy: Allow most commands, block only destructive/dangerous ones
+  // ═══════════════════════════════════════════════════════════════════════════
+  "chat.tools.terminal.enableAutoApprove": true,
+  "chat.tools.terminal.autoApprove": {
+    // ─────────────────────────────────────────────────────────────────────────
+    // DEFAULT: Allow everything not explicitly blocked
+    // ─────────────────────────────────────────────────────────────────────────
+    "/.*/": true,
+    // ─────────────────────────────────────────────────────────────────────────
+    // BLOCKED: Destructive file operations
+    // ─────────────────────────────────────────────────────────────────────────
+    "rm": false,
+    "rmdir": false,
+    "del": false,
+    "/^Remove-Item\\b/i": false,
+    "/^rd\\b/i": false,
+    // ─────────────────────────────────────────────────────────────────────────
+    // BLOCKED: Permission & ownership changes
+    // ─────────────────────────────────────────────────────────────────────────
+    "chmod": false,
+    "chown": false,
+    "sudo": false,
+    // ─────────────────────────────────────────────────────────────────────────
+    // BLOCKED: Process termination
+    // ─────────────────────────────────────────────────────────────────────────
+    "kill": false,
+    "killall": false,
+    "pkill": false,
+    "/^Stop-Process\\b/i": false,
+    // ─────────────────────────────────────────────────────────────────────────
+    // BLOCKED: Arbitrary code execution
+    // ─────────────────────────────────────────────────────────────────────────
+    "eval": false,
+    "/^Invoke-Expression\\b/i": false,
+    // ─────────────────────────────────────────────────────────────────────────
+    // BLOCKED: Destructive Git operations
+    // ─────────────────────────────────────────────────────────────────────────
+    "/^git\\s+push\\b/": false,
+    "/^git\\s+reset\\s+--hard\\b/": false,
+    "/^git\\s+clean\\b/": false,
+    "/^git\\s+checkout\\s+--\\s+\\.\\b/": false,
+    // ─────────────────────────────────────────────────────────────────────────
+    // BLOCKED: Dangerous Docker operations
+    // ─────────────────────────────────────────────────────────────────────────
+    "/^docker\\s+(rm|rmi|system\\s+prune)\\b/": false,
+    "/^docker-compose\\s+down\\b/": false
+  }
+}

@@ -1,0 +1,114 @@
+// For format details, see https://containers.dev/implementors/json_reference/
+{
+  "name": "Multi-Language Dev Container (Python, Node, Deno, Java)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13",
+  // "image": "mcr.microsoft.com/devcontainers/base:ubuntu", // Use this base image if you want to install Python manually in setup-devcontainer.sh
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": false,
+      "installOhMyZshConfigs": false,
+      "configureZshAsDefaultShell": true,
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },    
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": "false"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },    
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts",
+      "nodeGypDependencies": true,
+      "installYarnUsingApt": true
+    },
+    "ghcr.io/va-h/devcontainers-features/uv:1": {
+      "shellAutocompletion": true
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "25",
+      "additionalVersions": "21",
+      "installGradle": "true",
+      "installMaven": "true"
+    },
+    "ghcr.io/devcontainers-community/features/deno:1": {
+      "version": "latest"
+    },
+    "./local-features/playwright-chromium": {},
+    "./local-features/ripgrep": {},
+    "ghcr.io/schlich/devcontainer-features/starship:0": {}
+
+    // Add additional languages / technologies as needed, for example:
+    // "ghcr.io/devcontainers/features/go:1": {}    
+    // "ghcr.io/devcontainers/features/rust:1": {}
+    // "ghcr.io/devcontainers/features/ruby:1": {}
+
+    // Additional optional and useful features to consider adding:
+    // # SSH server feature - allows you to connect to the dev container via SSH.
+    //  - See https://github.com/devcontainers/features/tree/main/src/sshd for info on how to use SSH to connect to the container.
+    // "ghcr.io/devcontainers/features/sshd:1": {
+    //   "version": "latest"
+    // },
+    // # Python
+    //  - Python feature is included in the base image; uncomment below to customize or install manually, if using a clean base image
+    // "ghcr.io/devcontainers/features/python:1": {
+    //   "version": "3.13"
+    // }, 
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [2222],
+  
+  // Use 'portsAttributes' to set default properties for specific forwarded ports. 
+  // More info: https://containers.dev/implementors/json_reference/#port-attributes
+  "portsAttributes": {
+    "3000": {
+      "label": "Node/React App",
+      "onAutoForward": "openBrowserOnce"
+    },
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "openBrowserOnce"
+    },
+    "8000": {
+      "label": "Python Dev Server",
+      "onAutoForward": "notify"
+    },
+    "8182": {
+      "label": "Alternative HTTP",
+      "onAutoForward": "openBrowserOnce"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.vscode-pull-request-github",
+        "anthropic.claude-code",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "denoland.vscode-deno"
+      ]
+    }
+  },
+
+  "remoteUser": "vscode",
+  
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
+    "LANG": "en_US.UTF-8",
+    "LC_ALL": "en_US.UTF-8",
+    "TERM": "xterm-256color"
+  },
+
+  "postCreateCommand": "sed -i 's/\\r$//' .devcontainer/setup-devcontainer.sh && chmod +x .devcontainer/setup-devcontainer.sh && .devcontainer/setup-devcontainer.sh"
+  // "postCreateCommand": "sed -i 's/\\r$//' .devcontainer/setup-devcontainer.sh && chmod +x .devcontainer/setup-devcontainer.sh && .devcontainer/setup-devcontainer.sh > /tmp/setup.log 2>&1 && echo 'Setup complete. See /tmp/setup.log for details.'"
+  // "postCreateCommand": "dos2unix ./.devcontainer/setup-devcontainer.sh 2>/dev/null || sed -i 's/\\r$//' ./.devcontainer/setup-devcontainer.sh && sudo chmod 755 ./.devcontainer/setup-devcontainer.sh && ./.devcontainer/setup-devcontainer.sh"
+}

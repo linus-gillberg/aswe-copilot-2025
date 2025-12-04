@@ -1,0 +1,82 @@
+# Clean Gruvbox-inspired prompt
+# Based on no-runtimes preset - hides version numbers
+# Disables container/docker noise
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = 'gruvbox_dark'
+
+[palettes.gruvbox_dark]
+fg = '#ebdbb2'
+red = '#cc241d'
+green = '#98971a'
+yellow = '#d79921'
+blue = '#458588'
+purple = '#b16286'
+aqua = '#689d6a'
+orange = '#d65d0e'
+
+# Directory
+[directory]
+style = "bold yellow"
+truncation_length = 4
+
+# Git branch
+[git_branch]
+style = "bold aqua"
+
+# Git status
+[git_status]
+style = "bold red"
+
+# Character prompt
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+
+# Hide version numbers (no-runtimes style)
+[python]
+format = 'via [$symbol]($style) '
+
+[nodejs]
+format = 'via [$symbol]($style) '
+
+[java]
+format = 'via [$symbol]($style) '
+
+[deno]
+format = 'via [$symbol]($style) '
+
+# Disabled modules (container/system noise)
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+[os]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[container]
+disabled = true
+
+[shell]
+disabled = true
+
+[shlvl]
+disabled = true
+
+[time]
+disabled = true
+
+[conda]
+disabled = true
+
+[env_var]
+disabled = true
+
+[jobs]
+disabled = true

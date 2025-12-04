@@ -1,0 +1,17 @@
+{
+    "id": "playwright-chromium",
+    "version": "1.0.0",
+    "name": "Playwright Chromium",
+    "description": "Installs Chromium browser via Playwright with symlinks for common paths",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/common-utils:2": {},
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "options": {
+        "createSymlinks": {
+            "type": "boolean",
+            "default": true,
+            "description": "Create symlinks at /opt/google/chrome/chrome and /usr/local/bin/chromium"
+        }
+    }
+}

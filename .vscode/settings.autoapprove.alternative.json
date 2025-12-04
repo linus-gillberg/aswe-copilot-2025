@@ -1,0 +1,122 @@
+{
+  "terminal.integrated.shellIntegration.enabled": true,
+  "chat.tools.terminal.enableAutoApprove": true,
+  "chat.tools.terminal.autoApprove": {
+    // ═══════════════════════════════════════════════════════
+    // SAFE: Read-only file operations
+    // ═══════════════════════════════════════════════════════
+    "/^ls\\b/": true,
+    "/^ll\\b/": true,
+    "pwd": true,
+    "/^cat\\b/": true,
+    "/^head\\b/": true,
+    "/^tail\\b/": true,
+    "/^wc\\b/": true,
+    "/^file\\b/": true,
+    "/^which\\b/": true,
+    "/^tree\\b/": true,
+    // ═══════════════════════════════════════════════════════
+    // SAFE: Git read-only operations
+    // ═══════════════════════════════════════════════════════
+    "/^git\\s+(status|diff|log|show|branch|remote|blame|stash\\s+list)\\b/": true,
+    // ═══════════════════════════════════════════════════════
+    // SAFE: Directory creation (non-destructive)
+    // ═══════════════════════════════════════════════════════
+    "/^mkdir\\b/": true,
+    // ═══════════════════════════════════════════════════════ 
+    // SAFE: Package manager read operations
+    // ═══════════════════════════════════════════════════════
+    "/^npm\\s+(list|ls|view|outdated|audit)\\b/": true,
+    "/^pnpm\\s+(list|ls|outdated|audit)\\b/": true,
+    "/^yarn\\s+(list|info|outdated|audit)\\b/": true,
+    "/^pip\\s+(list|show|freeze)\\b/": true,
+    "/^cargo\\s+(tree|metadata)\\b/": true,
+    "/^go\\s+list\\b/": true,
+    // ═══════════════════════════════════════════════════════ 
+    // CONDITIONAL: Testing (generally safe in dev containers)
+    // ═══════════════════════════════════════════════════════
+    "/^npm\\s+(test|run\\s+test)\\b/": true,
+    "/^pnpm\\s+(test|run\\s+test)\\b/": true,
+    "/^yarn\\s+test\\b/": true,
+    "/^pytest\\b/": true,
+    "/^python\\s+-m\\s+pytest\\b/": true,
+    "/^cargo\\s+test\\b/": true,
+    "/^go\\s+test\\b/": true,
+    "/^mvn\\s+test\\b/": true,
+    "/^gradle\\s+test\\b/": true,
+    "/^jest\\b/": true,
+    "/^vitest\\b/": true,
+    // ═══════════════════════════════════════════════════════ 
+    // CONDITIONAL: Linting/formatting (read-only mode)
+    // ═══════════════════════════════════════════════════════
+    "/^npm\\s+run\\s+lint\\b/": true,
+    "/^pnpm\\s+(lint|run\\s+lint)\\b/": true,
+    "/^eslint\\b(?!.*--fix)/": true,
+    "/^tsc\\b.*--noEmit/": true,
+    "/^npx\\s+tsc\\b.*--noEmit/": true,
+    // ═══════════════════════════════════════════════════════ 
+    // CONDITIONAL: Type checking
+    // ═══════════════════════════════════════════════════════ 
+    "/^mypy\\b/": true,
+    "/^pyright\\b/": true,
+    // ═══════════════════════════════════════════════════════
+    // CONDITIONAL: Build commands (safe in containers)   
+    // ═══════════════════════════════════════════════════════ 
+    "/^npm\\s+run\\s+(build|compile)\\b/": true,
+    "/^pnpm\\s+(build|run\\s+build)\\b/": true,
+    "/^cargo\\s+build\\b/": true,
+    "/^go\\s+build\\b/": true,
+    // ═══════════════════════════════════════════════════════
+    // SAFE: Docker read-only operations
+    // ═══════════════════════════════════════════════════════ 
+    "/^docker\\s+(ps|images|logs|inspect)\\b/": true,
+    "/^docker-compose\\s+(ps|logs)\\b/": true,
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Destructive file operations
+    // ═══════════════════════════════════════════════════════ 
+    "rm": false,
+    "rmdir": false,
+    "del": false,
+    "/^Remove-Item\\b/i": false,
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Permission changes
+    // ═══════════════════════════════════════════════════════ 
+    "chmod": false,
+    "chown": false,
+    "sudo": false,
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Process management
+    // ═══════════════════════════════════════════════════════
+    "kill": false,
+    "killall": false,
+    "pkill": false, 
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Network operations (supply chain risk)
+    // ═══════════════════════════════════════════════════════ 
+    "curl": false,
+    "wget": false,
+    "/^Invoke-WebRequest\\b/i": false,
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Code evaluation
+    // ═══════════════════════════════════════════════════════
+    "eval": false,
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Destructive Git operations
+    // ═══════════════════════════════════════════════════════
+    "/^git\\s+(push|reset|revert|clean|checkout\\s+--\\s+\\.)\\b/": false,
+    "/^git\\s+push\\s+.*--force/": false,
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Package installation (post-install script risk)
+    // ═══════════════════════════════════════════════════════
+    "/^npm\\s+install\\b/": false,
+    "/^pnpm\\s+(install|add)\\b/": false,
+    "/^yarn\\s+(install|add)\\b/": false,
+    "/^pip\\s+install\\b/": false,
+    "/^cargo\\s+install\\b/": false,
+    // ═══════════════════════════════════════════════════════
+    // BLOCKED: Dangerous Docker operations
+    // ═══════════════════════════════════════════════════════
+    "/^docker\\s+(run|exec|rm|rmi|system\\s+prune)\\b/": false,
+    "/^docker-compose\\s+(up|down|exec)\\b/": false
+  }
+}

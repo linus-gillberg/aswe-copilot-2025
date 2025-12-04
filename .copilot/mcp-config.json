@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "local",
+      "command": "npx",
+      "tools": [
+        "*"
+      ],
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "fetch": {
+      "type": "local",
+      "command": "uvx",
+      "tools": [
+        "*"
+      ],
+      "args": [
+        "mcp-server-fetch"
+      ]
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": "npx",
+      "tools": [
+        "*"
+      ],
+      "args": [
+        "chrome-devtools-mcp@latest",
+        "--headless",
+        "--isolated",
+        "--chromeArg=--no-sandbox",
+        "--chromeArg=--disable-setuid-sandbox",
+        "--chromeArg=--disable-dev-shm-usage"
+      ],
+      "env": {}
+    }
+  }
+}

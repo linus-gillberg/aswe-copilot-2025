@@ -1,0 +1,46 @@
+{
+    "servers": {
+        "context7": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "@upstash/context7-mcp"
+            ],
+            "env": {}
+        },
+        "fetch": {
+            "type": "stdio",
+            "command": "uvx",
+            "args": [
+                "mcp-server-fetch"
+            ],
+            "env": {}
+        },
+        "chrome-devtools": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "chrome-devtools-mcp@latest",
+                "--headless",
+                "--isolated",
+                // Flags required to run Chrome in a container (see https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#running-puppeteer-in-docker)
+                "--chromeArg=--no-sandbox",
+                "--chromeArg=--disable-setuid-sandbox",
+                "--chromeArg=--disable-dev-shm-usage"
+            ],
+            "env": {}
+        },
+        // "playwright": {
+        //     "type": "stdio",
+        //     "command": "npx",
+        //     "args": [
+        //         "@playwright/mcp@latest",
+        //         "--browser=chromium",
+        //         "--headless",
+        //         "--ignore-https-errors"
+        //     ]
+        // },
+    },
+    "inputs": []
+}
