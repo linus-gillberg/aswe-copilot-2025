@@ -92,9 +92,23 @@ Make sure Docker Desktop (or your preferred Docker environment) is installed and
 <br/>
 
 ### **Step 3.** Verify Setup
-Wait for the development environment to load completely. You should see the project files in the VS Code Explorer panel, and you should see the banner below indicating that the Dev Container has been setup successfully.
+Wait for the development environment to load completely. You should see the project files in the VS Code Explorer panel, and you should see the banner below indicating that the Dev Container has been setup successfully. 
 
 <img src="assets/dev-container-done.png" height="150"/><br/>
+
+Alternatively (usually when running in a codespace), you may also just see an empty terminal prompt: 
+
+<img src="assets/dev-container-done-terminal.jpg" height="70"/><br/>
+
+To verify that everything is working correctly, use the terminal (open a new one if necessary) to run the following command to check the copilot CLI version: 
+
+```bash
+copilot --version
+```
+
+You should then see output similar to this: 
+
+<img src="assets/dev-container-verify.jpg" height="77"/><br/>
 
 
 <br/>

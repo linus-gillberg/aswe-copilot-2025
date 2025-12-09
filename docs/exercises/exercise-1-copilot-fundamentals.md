@@ -169,7 +169,7 @@ After creating the file, type this in a new chat window/conversation:
 
 Copilot should reference your custom instructions.
 
-You can verify that the correct instructions, guidelines and rules file are being applied by checking the message at the top of the chat window:
+You can verify that the correct instructions, guidelines and rules file are being applied by checking the message at the top of the chat window: <br>
 <img src="../../assets/referenced-docs.jpg" height="140"/><br/>
 
 
